@@ -598,6 +598,7 @@ dependencies = [
     { name = "langchain-google-genai" },
     { name = "langchain-tavily" },
     { name = "langsmith", extra = ["claude-agent-sdk"] },
+    { name = "pydantic" },
     { name = "python-dotenv" },
     { name = "tavily" },
 ]
@@ -608,6 +609,7 @@ requires-dist = [
     { name = "langchain-google-genai", specifier = ">=4.2.1" },
     { name = "langchain-tavily", specifier = ">=0.2.17" },
     { name = "langsmith", extras = ["claude-agent-sdk"], specifier = ">=0.7.6" },
+    { name = "pydantic", specifier = ">=2.12.5" },
     { name = "python-dotenv", specifier = ">=1.2.1" },
     { name = "tavily", specifier = ">=1.1.0" },
 ]

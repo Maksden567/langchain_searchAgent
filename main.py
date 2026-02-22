@@ -1,4 +1,6 @@
 from dotenv import load_dotenv
+from typing import List
+from pydantic import BaseModel, Field
 from langchain.agents import create_agent
 from langchain.tools import tool
 from langchain.messages import HumanMessage
@@ -17,6 +19,18 @@ llm = ChatGoogleGenerativeAI(
     max_retries=2,
 )
 
+class Source(BaseModel):
+    """A source that agent found during the search."""
+    url: str = Field(..., description="The URL of the source")
+
+
+class AgentResponse(BaseModel):
+    """The response from the agent."""
+
+    sources: List[Source] = Field(
+        ..., description="A list of sources that the agent found during the search"
+    )
+
 @tool("search")
 def search(query: str) -> str:
     """
@@ -29,13 +43,14 @@ def search(query: str) -> str:
 
 agent = create_agent(
     model=llm,
-    tools=[search]
+    tools=[search],
+    response_format=AgentResponse,
 )
 
 def main():
     print("Hello from langchain-search-agent!")
 
-    result = agent.invoke({"messages": [HumanMessage(content="Which dollar exchange rate in Ukraine?")]})
+    result = agent.invoke({"messages": [HumanMessage(content="3 active jobs AI in Ukraine on dou")]})
         
     
 

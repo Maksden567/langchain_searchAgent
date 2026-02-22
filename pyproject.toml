@@ -9,6 +9,7 @@ dependencies = [
     "langchain-google-genai>=4.2.1",
     "langchain-tavily>=0.2.17",
     "langsmith[claude-agent-sdk]>=0.7.6",
+    "pydantic>=2.12.5",
     "python-dotenv>=1.2.1",
     "tavily>=1.1.0",
 ]
